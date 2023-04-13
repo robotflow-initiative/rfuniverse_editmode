@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="color-attr" style="background-color: rgb(255, 255, 255); border-left-width: 8px; border-right-width: 8px; border-top-width: 8px; border-bottom-width: 8px; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; width: auto;">
+        <ui:Slider picking-mode="Ignore" label="R" value="0" high-value="1" show-input-field="false" inverted="false" name="r-slider" style="color: rgba(255, 0, 0, 255); font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center;" />
+        <ui:Slider picking-mode="Ignore" label="G" value="0" high-value="1" show-input-field="false" inverted="false" name="g-slider" style="color: rgb(0, 255, 0); font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center;" />
+        <ui:Slider picking-mode="Ignore" label="B" value="0" high-value="1" show-input-field="false" inverted="false" name="b-slider" style="color: rgb(0, 0, 255); font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center;" />
+        <ui:Slider picking-mode="Ignore" label="A" value="0" high-value="1" show-input-field="false" inverted="false" name="a-slider" style="color: rgb(10, 10, 10); font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center;" />
+    </ui:VisualElement>
+</ui:UXML>

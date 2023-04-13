@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="create-window" style="height: auto; width: auto; flex-shrink: 1; top: auto; right: auto; display: flex; opacity: 1; visibility: visible; overflow: visible; justify-content: space-between; background-color: rgba(255, 255, 255, 0); position: relative; left: auto; bottom: auto; flex-direction: column; flex-grow: 1;">
+        <ToggleButtonGroup name="type-button-group" style="background-color: rgba(164, 164, 164, 255);" />
+        <ui:ListView focusable="true" name="create-object-list" horizontal-scrolling="false" fixed-item-height="200" style="flex-grow: 1; background-color: rgb(132, 132, 132); flex-direction: row; align-items: stretch; flex-basis: auto; padding-left: 0; padding-right: 0;" />
+    </ui:VisualElement>
+</ui:UXML>

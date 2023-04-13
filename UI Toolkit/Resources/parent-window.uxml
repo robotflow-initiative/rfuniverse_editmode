@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="parent-window" style="bottom: auto; position: relative; width: auto; height: auto; justify-content: space-around; background-color: rgb(142, 142, 142); flex-grow: 1; flex-shrink: 1; left: auto;">
+        <ui:Label text="Parent" display-tooltip-when-elided="true" name="parent" style="-unity-text-align: middle-center; font-size: 30px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgb(255, 255, 255);" />
+        <ui:ListView focusable="true" name="parent-list" fixed-item-height="50" show-border="false" show-alternating-row-backgrounds="All" style="height: auto; width: auto; position: relative; top: auto; bottom: auto; flex-grow: 1; background-color: rgb(144, 144, 144); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="dialog-window" picking-mode="Ignore" style="position: relative; left: auto; top: auto; right: auto; bottom: auto; background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: center; flex-grow: 1; flex-shrink: 1;">
+        <ui:VisualElement name="back" style="position: absolute; flex-shrink: 1; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.39); display: flex;" />
+        <ui:VisualElement name="dialog" style="flex-grow: 0; flex-shrink: 0; width: 750px; height: 300px; justify-content: space-around; background-color: rgb(255, 255, 255); -unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-background-scale-mode: stretch-to-fill; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;">
+            <ui:Label text="content" display-tooltip-when-elided="true" name="text" style="font-size: 48px; -unity-text-align: middle-left; white-space: normal; padding-left: 50px; padding-right: 50px; padding-top: 30px; padding-bottom: 30px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; flex-grow: 1; flex-shrink: 1;" />
+            <ui:VisualElement name="button" style="flex-direction: row; justify-content: space-around; flex-grow: 0; height: 100px; padding-left: 30px; padding-right: 30px; padding-top: 0; padding-bottom: 30px;">
+                <ui:Button text="verify" display-tooltip-when-elided="true" name="verify" style="width: 150px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 30px;" />
+                <ui:Button text="cancel" display-tooltip-when-elided="true" name="cancel" style="height: auto; width: 150px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 30px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="articulations-attr" style="background-color: rgb(255, 255, 255); border-left-width: 8px; border-right-width: 8px; border-top-width: 8px; border-bottom-width: 8px; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; width: auto;">
+        <ToggleButtonGroup name="item-button" style="height: 50px; font-size: 20px;" />
+        <ui:DropdownField label="JointType" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="joint-type" style="font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; -unity-text-align: middle-center;" />
+        <ToggleButtonGroup name="joint-drive" style="height: 50px; font-size: 25px;" />
+        <ui:DropdownField label="JointLimit" index="-1" choices="System.Collections.Generic.List`1[System.String]" name="joint-limit" style="font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        <ui:TextField picking-mode="Ignore" label="LowerLimit" name="lower-limit" style="font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        <ui:TextField picking-mode="Ignore" label="UpperLimit" name="upper-limit" style="font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        <ui:TextField picking-mode="Ignore" label="Stiffness" name="stiffness" style="font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        <ui:TextField picking-mode="Ignore" label="Damping" value="filler text" name="damping" style="font-size: 20px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+    </ui:VisualElement>
+</ui:UXML>
