@@ -16,9 +16,9 @@ namespace RFUniverse.EditMode
         DialogWindow dialogWindow;
         FileWindow fileWindow;
         VisualElement axisInput;
-        TextField xInput;
-        TextField yInput;
-        TextField zInput;
+        FloatField xInput;
+        FloatField yInput;
+        FloatField zInput;
         Label tips;
         Toggle groundToggle;
         public void Init(EditAssetsData assetsData,
@@ -73,12 +73,12 @@ namespace RFUniverse.EditMode
             fileWindow.Hide();
 
             axisInput = root.Q<VisualElement>("axis-input");
-            xInput = axisInput.Q<TextField>("x-input");
-            yInput = axisInput.Q<TextField>("y-input");
-            zInput = axisInput.Q<TextField>("z-input");
-            xInput.RegisterValueChangedCallback((ec) => { onTransformSubmit(new Vector3(float.Parse(xInput.value), float.Parse(yInput.value), float.Parse(zInput.value))); });
-            yInput.RegisterValueChangedCallback((ec) => { onTransformSubmit(new Vector3(float.Parse(xInput.value), float.Parse(yInput.value), float.Parse(zInput.value))); });
-            zInput.RegisterValueChangedCallback((ec) => { onTransformSubmit(new Vector3(float.Parse(xInput.value), float.Parse(yInput.value), float.Parse(zInput.value))); });
+            xInput = axisInput.Q<FloatField>("x-input");
+            yInput = axisInput.Q<FloatField>("y-input");
+            zInput = axisInput.Q<FloatField>("z-input");
+            xInput.RegisterValueChangedCallback((_) => { onTransformSubmit(new Vector3(xInput.value, yInput.value, zInput.value)); });
+            yInput.RegisterValueChangedCallback((_) => { onTransformSubmit(new Vector3(xInput.value, yInput.value, zInput.value)); });
+            zInput.RegisterValueChangedCallback((_) => { onTransformSubmit(new Vector3(xInput.value, yInput.value, zInput.value)); });
 
             groundToggle = root.Q<Toggle>("ground");
             groundToggle.RegisterValueChangedCallback((b) => onChangeGround(b.newValue));
@@ -87,9 +87,9 @@ namespace RFUniverse.EditMode
         }
         public void TransformChange(Vector3 vector3)
         {
-            xInput.SetValueWithoutNotify(vector3.x.ToString());
-            yInput.SetValueWithoutNotify(vector3.y.ToString());
-            zInput.SetValueWithoutNotify(vector3.z.ToString());
+            xInput.SetValueWithoutNotify(vector3.x);
+            yInput.SetValueWithoutNotify(vector3.y);
+            zInput.SetValueWithoutNotify(vector3.z);
         }
 
         public void ModeChange(EditMode editMode, EditableUnit unit)

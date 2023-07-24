@@ -10,9 +10,9 @@ namespace RFUniverse.EditMode
     public class ArticulationAttrUI : BaseAttrUI
     {
         ToggleButtonGroup itemButton;
-        DropdownField jointType;
+        EnumField jointType;
         ToggleButtonGroup jointDrive;
-        DropdownField jointLimit;
+        EnumField jointLimit;
         TextField lowerLimit;
         TextField upperLimit;
         TextField stiffness;
@@ -45,11 +45,11 @@ namespace RFUniverse.EditMode
         {
             Resources.Load<VisualTreeAsset>("articulation-attr").CloneTree(this);
             itemButton = this.Q<ToggleButtonGroup>("item-button");
-            jointType = this.Q<DropdownField>("joint-type");
+            jointType = this.Q<EnumField>("joint-type");
             jointDrive = this.Q<ToggleButtonGroup>("joint-driver");
             jointDrive.Refresh(new string[] { "X", "Y", "Z" }, 20);
             jointDrive.OnSelectedChanged += (i, s) => { CurrentSelectedDrive = i; };
-            jointLimit = this.Q<DropdownField>("joint-limit");
+            jointLimit = this.Q<EnumField>("joint-limit");
             lowerLimit = this.Q<TextField>("lower-limit");
             upperLimit = this.Q<TextField>("upper-limit");
             stiffness = this.Q<TextField>("stiffness");

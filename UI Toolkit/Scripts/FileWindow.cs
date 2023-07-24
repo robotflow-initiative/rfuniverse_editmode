@@ -19,7 +19,7 @@ public class FileWindow : VisualElement
         Resources.Load<VisualTreeAsset>("file-window").CloneTree(this);
         back = this.Q<VisualElement>("back");
         fileList = this.Q<ListView>("file-list");
-        fileList.onSelectionChange += OnSelectionChange;
+        fileList.selectionChanged += OnSelectionChange;
         textField = this.Q<TextField>("name");
         verify = this.Q<Button>("verify");
         cancel = this.Q<Button>("cancel");

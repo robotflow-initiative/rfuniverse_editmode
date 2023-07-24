@@ -9,14 +9,14 @@ namespace RFUniverse.EditMode
     public class RigidbodyAttrUI : BaseAttrUI
     {
         const string uiName = "Rigidbody";
-        TextField mass;
+        FloatField mass;
         Toggle useGravity;
         Toggle isKinematic;
         public new class UxmlFactory : UxmlFactory<RigidbodyAttrUI> { }
         public RigidbodyAttrUI()
         {
             Resources.Load<VisualTreeAsset>("rigidbody-attr").CloneTree(this);
-            mass = this.Q<TextField>("mass-field");
+            mass = this.Q<FloatField>("mass-field");
             useGravity = this.Q<Toggle>("use-gravity-toggle");
             isKinematic = this.Q<Toggle>("is-kinematic-toggle");
         }
@@ -24,7 +24,7 @@ namespace RFUniverse.EditMode
         {
             base.Init(baseAttr, info, OnValueChange, OnAttributeChange);
             RigidbodyData data = (RigidbodyData)info.GetValue(baseAttr);
-            mass.SetValueWithoutNotify(data.mass.ToString());
+            mass.SetValueWithoutNotify(data.mass);
             useGravity.SetValueWithoutNotify(data.useGravity);
             isKinematic.SetValueWithoutNotify(data.isKinematic);
             mass.RegisterValueChangedCallback((f) => ValueChanged(OnValueChange));
@@ -39,7 +39,7 @@ namespace RFUniverse.EditMode
         {
             RigidbodyData data = new RigidbodyData()
             {
-                mass = float.TryParse(mass.value, out float value) ? value : 1,
+                mass = mass.value,
                 useGravity = useGravity.value,
                 isKinematic = isKinematic.value
             };
