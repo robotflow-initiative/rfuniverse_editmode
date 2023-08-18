@@ -1,5 +1,4 @@
-﻿using RFUniverse.EditMode;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +16,7 @@ public class ObjectWindow : VisualElement
     {
         Resources.Load<VisualTreeAsset>("object-window").CloneTree(this);
         listView = this.Q<ListView>("object-list");
-        listView.onSelectionChange += OnSelectionChange;
+        listView.selectionChanged += SelectionChanged;
     }
     public void RefreshSource(Tuple<int, string>[] items)
     {
@@ -25,7 +24,7 @@ public class ObjectWindow : VisualElement
         listView.makeItem = MakeItem;
         listView.bindItem = BindItem;
     }
-    private void OnSelectionChange(IEnumerable<object> obj)
+    private void SelectionChanged(IEnumerable<object> obj)
     {
         foreach (var item in obj)
         {
