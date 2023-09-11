@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace RFUniverse.EditMode
@@ -15,7 +16,7 @@ namespace RFUniverse.EditMode
         public new class UxmlFactory : UxmlFactory<RigidbodyAttrUI> { }
         public RigidbodyAttrUI()
         {
-            Resources.Load<VisualTreeAsset>("rigidbody-attr").CloneTree(this);
+            Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/rigidbody-attr").WaitForCompletion().CloneTree(this);
             mass = this.Q<FloatField>("mass-field");
             useGravity = this.Q<Toggle>("use-gravity-toggle");
             isKinematic = this.Q<Toggle>("is-kinematic-toggle");

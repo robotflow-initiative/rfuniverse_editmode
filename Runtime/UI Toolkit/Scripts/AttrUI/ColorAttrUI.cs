@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace RFUniverse.EditMode
@@ -16,7 +17,7 @@ namespace RFUniverse.EditMode
         public new class UxmlFactory : UxmlFactory<ColorAttrUI> { }
         public ColorAttrUI()
         {
-            Resources.Load<VisualTreeAsset>("color-attr").CloneTree(this);
+            Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/color-attr").WaitForCompletion().CloneTree(this);
             r = this.Q<Slider>("r-slider");
             g = this.Q<Slider>("g-slider");
             b = this.Q<Slider>("b-slider");

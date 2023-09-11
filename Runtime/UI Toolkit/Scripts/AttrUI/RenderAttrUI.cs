@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace RFUniverse.EditMode
@@ -13,7 +14,7 @@ namespace RFUniverse.EditMode
         public new class UxmlFactory : UxmlFactory<RenderAttrUI> { }
         public RenderAttrUI()
         {
-            Resources.Load<VisualTreeAsset>("render-attr").CloneTree(this);
+            Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/render-attr").WaitForCompletion().CloneTree(this);
             toggle = this.Q<Toggle>("render-toggle");
         }
         public override void Init(BaseAttr baseAttr, PropertyInfo info, Action<string, string, object, int> OnValueChange, Action<string, int> OnAttributeChange)

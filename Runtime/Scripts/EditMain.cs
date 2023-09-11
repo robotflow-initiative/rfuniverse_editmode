@@ -117,28 +117,26 @@ namespace RFUniverse.EditMode
             jointLimitView.gameObject.SetActive(false);
             colldierView.gameObject.SetActive(false);
 
-            UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<EditAssetsData>("AssetsData").Completed += (handle) =>
-            {
-                editMainUI.Init(handle.Result,
-                filePath,//场景文件路径
-                (mode) => CurrentEditMode = mode,//模式切换回调
-                (s) => CurrentSelectedCreateObject = s,//选择创建物体回调
-                (id) => SelectUnitID(id),//选择物体id回调
-                (s) => SelectParent(s),//选择父物体回调
-                () => DeleteCurrentUnit(),//删除当前物体回调
-                (sa, sp, o, i) => ChangeValue(sa, sp, o, i),//改变物体属性回调
-                (v3) => ChangeTransformFormUI(v3),//修改位置回调
-                (s, i) => ChangeAttribute(s, i),//切换属性回调
-                (s, b) => SelectFile(s, b),//选择文件回调
-                (b) => ChangeGround(b),//开关地面回调
-                () => Exit()
-                );
-                OnModeChange += editMainUI.ModeChange;
-                OnModeChange += axis.ModeChange;
-                OnModeChange(CurrentEditMode, CurrentSelectedUnit);
-                OnSelectedUnitChange?.Invoke(currentSelectedUnit);
-                editMainUI.GroundChange(GroundActive);
-            };
+            EditAssetsData editAssetsData = UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<EditAssetsData>("AssetsData").WaitForCompletion();
+            editMainUI.Init(editAssetsData,
+                                    filePath,//场景文件路径
+                                    (mode) => CurrentEditMode = mode,//模式切换回调
+                                    (s) => CurrentSelectedCreateObject = s,//选择创建物体回调
+                                    (id) => SelectUnitID(id),//选择物体id回调
+                                    (s) => SelectParent(s),//选择父物体回调
+                                    () => DeleteCurrentUnit(),//删除当前物体回调
+                                    (sa, sp, o, i) => ChangeValue(sa, sp, o, i),//改变物体属性回调
+                                    (v3) => ChangeTransformFormUI(v3),//修改位置回调
+                                    (s, i) => ChangeAttribute(s, i),//切换属性回调
+                                    (s, b) => SelectFile(s, b),//选择文件回调
+                                    (b) => ChangeGround(b),//开关地面回调
+                                    () => Exit()
+                                    );
+                                    OnModeChange += editMainUI.ModeChange;
+                                    OnModeChange += axis.ModeChange;
+                                    OnModeChange(CurrentEditMode, CurrentSelectedUnit);
+                                    OnSelectedUnitChange?.Invoke(currentSelectedUnit);
+                                    editMainUI.GroundChange(GroundActive);
         }
         void Exit()
         {
@@ -251,10 +249,8 @@ namespace RFUniverse.EditMode
         }
         void CreateUnit(BaseAttrData baseAttrData)
         {
-            AssetManager.Instance.InstanceObject(baseAttrData, (attr) =>
-            {
-                CreateUnit(attr);
-            }, false);
+            BaseAttr attr = AssetManager.Instance.InstanceObject<BaseAttr>(baseAttrData, false);
+            CreateUnit(attr);
         }
         void CreateUnit(BaseAttr attr)
         {
@@ -289,18 +285,16 @@ namespace RFUniverse.EditMode
         void SelectFile(string path, bool mode)
         {
             if (mode)
-                AssetManager.Instance.SaveScene(path, editableUnits.Values.Select((s) => s.Attr).ToList());
+                PlayerMain.Instance.SaveScene(path, editableUnits.Values.Select((s) => s.Attr).ToList());
             else
             {
                 ClearUnit();
-                AssetManager.Instance.LoadScene(path, (attrs) =>
+                var attrs = PlayerMain.Instance.LoadScene(path, false);
+                foreach (var item in attrs)
                 {
-                    foreach (var item in attrs)
-                    {
-                        CreateUnit(item);
-                    }
-                    editMainUI.RefeshObjectList(editableUnits.Values.ToList());
-                }, false);
+                    CreateUnit(item);
+                }
+                editMainUI.RefeshObjectList(editableUnits.Values.ToList());
             }
         }
         //void LoadScene(string file)

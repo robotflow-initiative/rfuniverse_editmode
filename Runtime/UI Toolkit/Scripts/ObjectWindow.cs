@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class ObjectWindow : VisualElement
@@ -14,7 +15,7 @@ public class ObjectWindow : VisualElement
     public new class UxmlFactory : UxmlFactory<ObjectWindow> { }
     public ObjectWindow()
     {
-        Resources.Load<VisualTreeAsset>("object-window").CloneTree(this);
+        Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/object-window").WaitForCompletion().CloneTree(this);
         listView = this.Q<ListView>("object-list");
         listView.selectionChanged += SelectionChanged;
     }
@@ -40,7 +41,7 @@ public class ObjectWindow : VisualElement
 
     private VisualElement MakeItem()
     {
-        TemplateContainer oneObjectItem = Resources.Load<VisualTreeAsset>("text-item").Instantiate();
+        TemplateContainer oneObjectItem = Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/text-item").WaitForCompletion().Instantiate();
         return oneObjectItem;
     }
 }

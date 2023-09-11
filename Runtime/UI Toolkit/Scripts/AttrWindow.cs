@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class AttrWindow : VisualElement
@@ -37,7 +38,7 @@ public class AttrWindow : VisualElement
     public new class UxmlFactory : UxmlFactory<AttrWindow> { }
     public AttrWindow()
     {
-        Resources.Load<VisualTreeAsset>("attr-window").CloneTree(this);
+        Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/attr-window").WaitForCompletion().CloneTree(this);
         this.Q<Button>("delete").clicked += () => OnDeleteObject?.Invoke();
         attrButtonGroup = this.Q<ToggleButtonGroup>("attr-button-group");
         attrButtonGroup.OnSelectedChanged += (i, s) => { CurrentAttr = s; };

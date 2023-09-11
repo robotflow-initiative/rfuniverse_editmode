@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class CreateWindow : VisualElement
@@ -29,7 +30,7 @@ public class CreateWindow : VisualElement
 
     private VisualElement MakeItem()
     {
-        TemplateContainer oneObjectItem = Resources.Load<VisualTreeAsset>("object-item").Instantiate();
+        TemplateContainer oneObjectItem = Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/object-item").WaitForCompletion().Instantiate();
         return oneObjectItem;
     }
 
@@ -41,10 +42,10 @@ public class CreateWindow : VisualElement
     public new class UxmlFactory : UxmlFactory<CreateWindow> { }
     public CreateWindow()
     {
-        Resources.Load<VisualTreeAsset>("create-window").CloneTree(this);
+        Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/create-window").WaitForCompletion().CloneTree(this);
         buttonGroup = this.Q<ToggleButtonGroup>("type-button-group");
         objectWindow = this.Q<ListView>("create-object-list");
-        objectWindow.onSelectionChange += OnSelectionChange;
+        objectWindow.selectionChanged += OnSelectionChange;
     }
     public void Init(EditAssetsData editAssetsData, Action<string> onSelectedCreateObject)
     {

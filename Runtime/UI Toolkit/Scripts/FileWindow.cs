@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class FileWindow : VisualElement
@@ -16,7 +17,7 @@ public class FileWindow : VisualElement
     public new class UxmlFactory : UxmlFactory<FileWindow> { }
     public FileWindow()
     {
-        Resources.Load<VisualTreeAsset>("file-window").CloneTree(this);
+        Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/file-window").WaitForCompletion().CloneTree(this);
         back = this.Q<VisualElement>("back");
         fileList = this.Q<ListView>("file-list");
         fileList.selectionChanged += OnSelectionChange;
@@ -58,7 +59,7 @@ public class FileWindow : VisualElement
 
     private VisualElement MakeItem()
     {
-        TemplateContainer oneObjectItem = Resources.Load<VisualTreeAsset>("text-item").Instantiate();
+        TemplateContainer oneObjectItem = Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/text-item").WaitForCompletion().Instantiate();
         return oneObjectItem;
     }
     public void Hide()

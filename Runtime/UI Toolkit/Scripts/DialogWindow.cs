@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 public class DialogWindow : VisualElement
@@ -13,7 +14,7 @@ public class DialogWindow : VisualElement
     public new class UxmlFactory : UxmlFactory<DialogWindow> { }
     public DialogWindow()
     {
-        Resources.Load<VisualTreeAsset>("dialog-window").CloneTree(this);
+        Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/dialog-window").WaitForCompletion().CloneTree(this);
         back = this.Q<VisualElement>("back");
         text = this.Q<Label>("text");
         verify = this.Q<Button>("verify");

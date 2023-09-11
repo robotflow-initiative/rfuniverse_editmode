@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -159,7 +160,7 @@ public class ToggleButton : VisualElement
     }
     public ToggleButton()
     {
-        Resources.Load<VisualTreeAsset>("toggle-button").CloneTree(this);
+        Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/toggle-button").WaitForCompletion().CloneTree(this);
         //hierarchy.Add(tc);
         button = this.Q<VisualElement>("toggle-button");
         //style.flexGrow = new StyleFloat(1);

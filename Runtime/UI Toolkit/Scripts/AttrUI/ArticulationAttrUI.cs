@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace RFUniverse.EditMode
@@ -43,7 +44,7 @@ namespace RFUniverse.EditMode
         }
         public ArticulationAttrUI()
         {
-            Resources.Load<VisualTreeAsset>("articulation-attr").CloneTree(this);
+            Addressables.LoadAssetAsync<VisualTreeAsset>("UITookit/articulation-attr").WaitForCompletion().CloneTree(this);
             itemButton = this.Q<ToggleButtonGroup>("item-button");
             jointType = this.Q<EnumField>("joint-type");
             jointDrive = this.Q<ToggleButtonGroup>("joint-driver");
