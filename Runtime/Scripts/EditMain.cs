@@ -2,12 +2,9 @@ using Newtonsoft.Json;
 using RFUniverse.Attributes;
 using RFUniverse.Manager;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using Obi;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEditor;
@@ -112,12 +109,12 @@ namespace RFUniverse.EditMode
         {
             base.Awake();
             Instance = this;
-            Physics.autoSimulation = false;
+            Physics.simulationMode = SimulationMode.Script;
             Physics.gravity = Vector3.zero;
             jointLimitView.gameObject.SetActive(false);
             colldierView.gameObject.SetActive(false);
 
-            EditAssetsData editAssetsData = UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<EditAssetsData>("AssetsData").WaitForCompletion();
+            EditAssetsData editAssetsData = (EditAssetsData)UnityEngine.AddressableAssets.Addressables.LoadAssetAsync<object>("AssetsData").WaitForCompletion();
             editMainUI.Init(editAssetsData,
                                     filePath,//场景文件路径
                                     (mode) => CurrentEditMode = mode,//模式切换回调
@@ -132,11 +129,11 @@ namespace RFUniverse.EditMode
                                     (b) => ChangeGround(b),//开关地面回调
                                     () => Exit()
                                     );
-                                    OnModeChange += editMainUI.ModeChange;
-                                    OnModeChange += axis.ModeChange;
-                                    OnModeChange(CurrentEditMode, CurrentSelectedUnit);
-                                    OnSelectedUnitChange?.Invoke(currentSelectedUnit);
-                                    editMainUI.GroundChange(GroundActive);
+            OnModeChange += editMainUI.ModeChange;
+            OnModeChange += axis.ModeChange;
+            OnModeChange(CurrentEditMode, CurrentSelectedUnit);
+            OnSelectedUnitChange?.Invoke(currentSelectedUnit);
+            editMainUI.GroundChange(GroundActive);
         }
         void Exit()
         {
