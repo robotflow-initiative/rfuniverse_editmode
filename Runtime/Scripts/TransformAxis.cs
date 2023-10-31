@@ -20,17 +20,17 @@ namespace RFUniverse.EditMode
 
         BaseAttr controlledAttr;
 
-        bool pressCtrlKey = false;
+        bool pressShiftKey = false;
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                pressCtrlKey = true;
+                pressShiftKey = true;
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
-                pressCtrlKey = false;
+                pressShiftKey = false;
             }
             if (Input.GetKeyDown(KeyCode.T))
             {
@@ -109,7 +109,7 @@ namespace RFUniverse.EditMode
             transform.Translate(Vector3.right * center.z * d * moveSpeed);
             realVector3 = transform.localPosition;
 
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 transform.localPosition = new Vector3(Mathf.RoundToInt(transform.localPosition.x / moveAdsorb) * moveAdsorb, transform.localPosition.y, transform.localPosition.z);
             }
@@ -132,7 +132,7 @@ namespace RFUniverse.EditMode
             transform.Translate(Vector3.up * center.z * d * moveSpeed);
             realVector3 = transform.localPosition;
 
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 transform.localPosition = new Vector3(transform.localPosition.x, Mathf.RoundToInt(transform.localPosition.y / moveAdsorb) * moveAdsorb, transform.localPosition.z);
             }
@@ -155,7 +155,7 @@ namespace RFUniverse.EditMode
             transform.Translate(Vector3.forward * center.z * d * moveSpeed);
             realVector3 = transform.localPosition;
 
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Mathf.RoundToInt(transform.localPosition.z / moveAdsorb) * moveAdsorb);
             }
@@ -185,7 +185,7 @@ namespace RFUniverse.EditMode
             transform.Rotate(Vector3.right * a * sign * rotateSpeed);
             realVector3 = transform.localEulerAngles;
 
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 transform.localEulerAngles = new Vector3(Mathf.RoundToInt(transform.localEulerAngles.x / rotateAdsorb) * rotateAdsorb, transform.localEulerAngles.y, transform.localEulerAngles.z);
             }
@@ -215,7 +215,7 @@ namespace RFUniverse.EditMode
             transform.Rotate(Vector3.up * a * sign * rotateSpeed);
             realVector3 = transform.localEulerAngles;
 
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, Mathf.RoundToInt(transform.localEulerAngles.y / rotateAdsorb) * rotateAdsorb, transform.localEulerAngles.z);
             }
@@ -245,7 +245,7 @@ namespace RFUniverse.EditMode
             transform.Rotate(Vector3.forward * a * sign * rotateSpeed);
             realVector3 = transform.localEulerAngles;
 
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, Mathf.RoundToInt(transform.localEulerAngles.z / rotateAdsorb) * rotateAdsorb);
             }
@@ -275,7 +275,7 @@ namespace RFUniverse.EditMode
             Vector3 scale = transform.localScale;
             scale += Vector3.right * center.z * d * scaleSpeed * sign;
             realVector3 = scale;
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 scale = new Vector3(Mathf.RoundToInt(scale.x / scaleAdsorb) * scaleAdsorb, scale.y, scale.z);
             }
@@ -309,7 +309,7 @@ namespace RFUniverse.EditMode
             Vector3 scale = transform.localScale;
             scale += Vector3.up * center.z * d * scaleSpeed * sign;
             realVector3 = scale;
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 scale = new Vector3(scale.x, Mathf.RoundToInt(scale.y / scaleAdsorb) * scaleAdsorb, scale.z);
             }
@@ -342,7 +342,7 @@ namespace RFUniverse.EditMode
             Vector3 scale = transform.localScale;
             scale += Vector3.forward * center.z * d * scaleSpeed * sign;
             realVector3 = scale;
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 scale = new Vector3(scale.x, scale.y, Mathf.RoundToInt(scale.z / scaleAdsorb) * scaleAdsorb);
             }
@@ -375,7 +375,7 @@ namespace RFUniverse.EditMode
             scale *= 1 + s;
 
             realVector3 = scale;
-            if (pressCtrlKey)
+            if (pressShiftKey)
             {
                 scale = Mathf.RoundToInt(scale.magnitude / startVector3.magnitude / scaleAdsorb) * scaleAdsorb * startVector3;
             }

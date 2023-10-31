@@ -57,6 +57,7 @@ namespace RFUniverse.EditMode
 
         void RefreshBounds()
         {
+            if (attr == null) return;
             MeshRenderer[] rendererBound = attr.GetComponentsInChildren<MeshRenderer>(true);
             Collider[] colliderBound = attr.GetComponentsInChildren<Collider>(true);
             List<Bounds> rendererbds = rendererBound.Select(s => s.bounds).ToList();

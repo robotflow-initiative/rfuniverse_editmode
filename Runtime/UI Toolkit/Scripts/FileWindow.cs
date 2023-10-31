@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
@@ -13,7 +10,8 @@ public class FileWindow : VisualElement
     TextField textField;
     Button verify;
     Button cancel;
-
+    Action verifyAction;
+    Action cancelAction;
     public new class UxmlFactory : UxmlFactory<FileWindow> { }
     public FileWindow()
     {
@@ -25,13 +23,23 @@ public class FileWindow : VisualElement
         verify = this.Q<Button>("verify");
         cancel = this.Q<Button>("cancel");
     }
+
     public void Show(string[] files, string verifyText = "", Action<string> onVerify = null, string cancelText = "", Action onCancel = null, bool showBack = true)
     {
+        verify.clicked -= verifyAction;
+        verifyAction = () =>
+        {
+            onVerify?.Invoke(textField.value);
+        };
+        verify.clicked += verifyAction;
+        cancel.clicked -= cancelAction;
+        cancelAction = onCancel;
+        cancel.clicked += cancelAction;
+
         style.display = DisplayStyle.Flex;
         back.style.display = showBack ? DisplayStyle.Flex : DisplayStyle.None;
         RefreshSource(files);
-        verify.clicked += () => { onVerify(textField.value); };
-        cancel.clicked += () => { onCancel(); };
+
         verify.text = verifyText;
         cancel.text = cancelText;
         textField.value = "";

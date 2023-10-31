@@ -34,9 +34,21 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 138796f6771a1ba4c9a72797e7dabeb6, type: 3}
     name: Collider
     attrs:
-    - image: {fileID: 21300000, guid: 3e2c8e42cce4ad44faa9f76ddb96625f, type: 3}
+    - image: {fileID: 21300000, guid: ea60c6e6d35f3da4782eb14334745f91, type: 3}
       name: Collider_Box
       displayName: Box
+    - image: {fileID: 21300000, guid: 72e2ccb65436ef849bbc222fb5577fa5, type: 3}
+      name: Collider_Cylinder
+      displayName: Cylinder
+    - image: {fileID: 21300000, guid: 8c28ecd59862f114a99a02aa0be1065f, type: 3}
+      name: Collider_Quad
+      displayName: Quad
+    - image: {fileID: 21300000, guid: 340ded6265c0b314a95dc98ab08e0907, type: 3}
+      name: Collider_Sphere
+      displayName: Sphere
+    - image: {fileID: 21300000, guid: f68464c24858e3329b82c0747c04d78f, type: 3}
+      name: Collider_Capsule
+      displayName: Capsule
   - image: {fileID: 21300000, guid: 54480c8535d545149b22ee8bfcaad6c2, type: 3}
     name: Rigidbody
     attrs:

@@ -1,9 +1,6 @@
-using Newtonsoft.Json;
 using RFUniverse.Attributes;
-using RFUniverse.Manager;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -246,7 +243,7 @@ namespace RFUniverse.EditMode
         }
         void CreateUnit(BaseAttrData baseAttrData)
         {
-            BaseAttr attr = AssetManager.Instance.InstanceObject<BaseAttr>(baseAttrData, false);
+            BaseAttr attr = InstanceObject<BaseAttr>(baseAttrData, false);
             CreateUnit(attr);
         }
         void CreateUnit(BaseAttr attr)
@@ -257,7 +254,7 @@ namespace RFUniverse.EditMode
         }
         void ClearUnit()
         {
-            foreach (var item in editableUnits.Values)
+            foreach (var item in editableUnits.Values.ToList())
             {
                 DeleteUnit(item);
             }
@@ -279,14 +276,15 @@ namespace RFUniverse.EditMode
             DeleteUnit(CurrentSelectedUnit);
             CurrentEditMode = EditMode.Select;
         }
+
         void SelectFile(string path, bool mode)
         {
             if (mode)
-                PlayerMain.Instance.SaveScene(path, editableUnits.Values.Select((s) => s.Attr).ToList());
+                SaveScene(path, editableUnits.Values.Select((s) => s.Attr).ToList());
             else
             {
                 ClearUnit();
-                var attrs = PlayerMain.Instance.LoadScene(path, false);
+                var attrs = LoadScene(path, false);
                 foreach (var item in attrs)
                 {
                     CreateUnit(item);
@@ -294,45 +292,7 @@ namespace RFUniverse.EditMode
                 editMainUI.RefeshObjectList(editableUnits.Values.ToList());
             }
         }
-        //void LoadScene(string file)
-        //{
-        //    string dataStriing = File.ReadAllText(filePath + "/" + file);
-        //    SceneData data = JsonConvert.DeserializeObject<SceneData>(dataStriing, RFUniverseUtility.JsonSerializerSettings);
-        //    ChangeGround(data.ground);
-        //    MainCamera.transform.position = new Vector3(data.cameraPosition[0], data.cameraPosition[1], data.cameraPosition[2]);
-        //    MainCamera.transform.eulerAngles = new Vector3(data.cameraRotation[0], data.cameraRotation[1], data.cameraRotation[2]);
-        //    Ground.transform.position = new Vector3(data.groundPosition[0], data.groundPosition[1], data.groundPosition[2]);
-        //    AssetManager.Instance.PreLoadAssetsAsync(data.assetsData.Select((a) => a.name).ToList(), () =>
-        //    {
-        //        data.assetsData = RFUniverseUtility.SortByParent(data.assetsData);
-        //        foreach (var item in data.assetsData)
-        //        {
-        //            CreateUnit(item);
-        //        }
-        //        editMainUI.RefeshObjectList(editableUnits.Values.ToList());
-        //    });
-        //}
-        //void SaveScene(string file)
-        //{
-        //    SceneData data = new SceneData();
-        //    data.ground = GroundActive;
-        //    if (!PlayerMain.Instance.MainCamera)
-        //    {
-        //        Debug.LogError("No Camera");
-        //        return;
-        //    }
-        //    data.cameraPosition = new float[] { MainCamera.transform.position.x, MainCamera.transform.position.y, MainCamera.transform.position.z };
-        //    data.cameraRotation = new float[] { MainCamera.transform.eulerAngles.x, MainCamera.transform.eulerAngles.y, MainCamera.transform.eulerAngles.z };
-        //    if (data.ground)
-        //        data.groundPosition = new float[] { Ground.transform.position.x, Ground.transform.position.y, Ground.transform.position.z };
-        //    foreach (var item in editableUnits.Values)
-        //    {
-        //        data.assetsData.Add(item.attr.GetAttrData());
-        //    }
-        //    data.assetsData = RFUniverseUtility.SortByParent(data.assetsData);
-        //    string dataString = JsonConvert.SerializeObject(data, Formatting.Indented, RFUniverseUtility.JsonSerializerSettings);
-        //    File.WriteAllText(filePath + "/" + file, dataString);
-        //}
+
         private void Update()
         {
             switch (CurrentEditMode)
