@@ -31,5 +31,5 @@
     <FileWindow name="file-window" focusable="false" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; flex-shrink: 0; display: flex;" />
     <ParentWindow name="parent-window" style="flex-shrink: 0; width: 400px; height: 800px; left: 0; bottom: 0; position: absolute; display: flex;" />
     <DialogWindow name="dialog-window" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; flex-shrink: 0; overflow: visible; visibility: visible; display: flex;" />
-    <ui:Label text="Label" display-tooltip-when-elided="true" name="tips" picking-mode="Ignore" style="height: 100px; bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-center; font-size: 30px; -unity-font-style: normal; white-space: nowrap; flex-direction: row; flex-grow: 1; flex-shrink: 1; position: absolute; left: 50%; translate: -50% 0; justify-content: center;" />
+    <ui:Label text="Label" display-tooltip-when-elided="true" name="tips" picking-mode="Ignore" style="height: 60px; bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-text-align: middle-center; font-size: 30px; -unity-font-style: normal; white-space: nowrap; flex-direction: row; flex-grow: 1; flex-shrink: 1; position: absolute; left: 0; translate: 0 0; justify-content: center; right: 0;" />
 </ui:UXML>

@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement name="rigidbody-attr" style="background-color: rgb(255, 255, 255); border-left-width: 8px; border-right-width: 8px; border-top-width: 8px; border-bottom-width: 8px; border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; width: auto;">
-        <ui:FloatField label="Mass" value="1" name="mass-field" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 20px; -unity-text-align: upper-center;" />
+        <ui:FloatField label="Mass(Kg)" value="1" name="mass-field" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 20px; -unity-text-align: upper-center;" />
         <ui:Toggle label="UseGravity" name="use-gravity-toggle" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 50px; font-size: 20px; -unity-text-align: middle-center; flex-direction: row; justify-content: flex-start;" />
         <ui:Toggle label="IsKinematic" name="is-kinematic-toggle" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 50px; font-size: 20px; -unity-text-align: middle-center;" />
     </ui:VisualElement>
