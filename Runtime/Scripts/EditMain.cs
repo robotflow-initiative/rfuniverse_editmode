@@ -284,7 +284,7 @@ namespace RFUniverse.EditMode
             else
             {
                 ClearUnit();
-                var attrs = LoadScene(path, false);
+                var attrs = LoadScene(path, true);
                 foreach (var item in attrs)
                 {
                     CreateUnit(item);
