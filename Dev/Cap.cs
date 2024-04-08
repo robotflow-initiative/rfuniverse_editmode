@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using System.IO;
 using System.Collections;
-using UnityEditor;
-
 
 public class Cap : MonoBehaviour
 {
-#if UNITY_EDITOR
+
     public Camera cropCamera; //待截图的目标摄像机
     public GameObject a;
     void Update()
@@ -18,14 +17,13 @@ public class Cap : MonoBehaviour
     }
     IEnumerator Go()
     {
+        Physics.simulationMode = SimulationMode.Script;
         for (int i = 0; i < a.transform.childCount; i++)
         {
             a.transform.GetChild(i).gameObject.SetActive(true);
             CameraCapture(cropCamera, new Rect(0, 0, 512, 512), a.transform.GetChild(i).name);
             a.transform.GetChild(i).gameObject.SetActive(false);
-            yield return new WaitForSeconds(1);
-
-
+            yield return new WaitForEndOfFrame();
         }
     }
     public void CameraCapture(Camera camera, Rect rect, string fileName)
@@ -44,8 +42,9 @@ public class Cap : MonoBehaviour
         Destroy(render);//删除RenderTexture对象
 
         byte[] bytes = tex.EncodeToJPG();//将纹理数据，转化成一个png图片
-        File.WriteAllBytes(Application.dataPath + "\\Assets\\EditMode\\Image\\" + fileName + ".jpg", bytes);//写入数据
+        File.WriteAllBytes(Application.dataPath + "\\EditMode\\Runtime\\Image\\" + fileName + ".jpg", bytes);//写入数据
         Debug.Log(string.Format("截取了一张图片: {0}", fileName));
     }
-#endif
+
 }
+#endif

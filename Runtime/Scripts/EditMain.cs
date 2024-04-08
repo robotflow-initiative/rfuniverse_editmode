@@ -19,7 +19,7 @@ namespace RFUniverse.EditMode
         Attr//属性编辑模式
     }
 
-    public class EditMain : RFUniverseMain
+    public class EditMain : RFUniverseMain<EditMain>
     {
         EditMode currentEditMode = EditMode.Select;
         public EditMode CurrentEditMode
@@ -95,17 +95,10 @@ namespace RFUniverse.EditMode
 
         private Dictionary<int, EditableUnit> editableUnits = new Dictionary<int, EditableUnit>();
 
-        public static EditMain Instance = null;
-
-        void OnValidate()
-        {
-            Instance = this;
-        }
         string filePath => Application.streamingAssetsPath + "/SceneData";
         protected override void Awake()
         {
             base.Awake();
-            Instance = this;
             Physics.simulationMode = SimulationMode.Script;
             Physics.gravity = Vector3.zero;
             jointLimitView.gameObject.SetActive(false);
