@@ -31,11 +31,6 @@ namespace RFUniverse.EditMode
 
                 RefreshBounds();
 
-                ObiFixedUpdater[] obiUpdater = attr.GetComponentsInChildren<ObiFixedUpdater>();
-                foreach (var item in obiUpdater)
-                {
-                    item.enabled = false;
-                }
                 ObiRigidbody[] obiRigidbody = attr.GetComponentsInChildren<ObiRigidbody>();
                 foreach (var item in obiRigidbody)
                 {
